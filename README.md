@@ -18,6 +18,15 @@ The general automation file. It performs the following operations (in order) eve
 - Assigns Geneticists
 - Buys Gigastations
 
+### `trimps_equalize.js`
+Utility methods to change number of workers
+- `equalize()` assigns an equal number of trimps as Farmers, Lumberjacks and Miners from unemployed trimps
+- `fireAndEqualize()` assigns an equal number of trimps as Farmers, Lumberjacks and Miners from total trimps, firing any existing workers first
+
+### `trimps_equipment.js`
+Utility methods to buy equipment. Useful for runs where you can't prestige equipment, like Scientist.
+- `buyBestEquipment()` tries to buy the best equipment available 50 times.
+
 ### `trimps_balance.js`
 Useful for Balance runs
 - Runs the first map whenever unbalance >= 90
@@ -29,15 +38,6 @@ Useful for Balance runs
 Useful for Decay runs
 - Pauses game on defined levels so that you can run maps
 - Pauses game when you're losing too much to prevent Decay increasing to max
-
-### `trimps_equalize.js`
-Utility methods to change number of workers
-- `equalize()` assigns an equal number of trimps as Farmers, Lumberjacks and Miners from unemployed trimps
-- `fireAndEqualize()` assigns an equal number of trimps as Farmers, Lumberjacks and Miners from total trimps, firing any existing workers first
-
-### `trimps_equipment.js`
-Utility methods to buy equipment. Useful for runs where you can't prestige equipment, like Scientist.
-- `buyBestEquipment()` tries to buy the best equipment available 50 times.
 
 ### `trimps_life.js`
 Useful for Life runs
