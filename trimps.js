@@ -10,10 +10,15 @@ let res_to_store = {
 	'metal': '#Forge'
 };
 
-let worlds_to_map = new Set([15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165, 175, 185, 195, 205]);
+let worlds_mapped = new Set();
 let worlds_shrieked = new Set();
 
 let wait_for = null;
+let wait_for_fragments = {
+    'enabled': false,
+    'cost': 0
+}
+
 let max_workers_mode = false;
 let max_workers_jobs = ["Farmer", "Lumberjack", "Miner"];
 
@@ -27,6 +32,59 @@ let warp_mult = 3;
 function setTrimpAmt(amt) {
 	numTab(5);
 	game.global.buyAmt = amt;
+}
+
+function mapForEquipment() {
+	// if game is paused, don't do anything
+	if (game.options.menu.pauseGame.enabled) {
+		return;
+	}
+
+    // scenario where we are waiting for more fragments
+    if (wait_for_fragments.enabled) {
+        if (wait_for_fragments.cost > game.resources.fragments.owned) {
+            return;
+        }
+
+        wait_for_fragments.enabled = false;
+
+		// buy the map
+		buyMap();
+		// run the map
+		runMap();
+    }
+    
+	let curr_world = game.global.world;
+
+	// maps
+	if (curr_world >= 15 && curr_world % 10 == 5 && !worlds_mapped.has(curr_world)) {
+		// use set to keep track of unmapped worlds
+		worlds_mapped.add(curr_world);
+
+		// switch to map view
+		mapsClicked();
+		// set size and difficulty sliders
+		document.getElementById('sizeAdvMapsRange').value = 9;
+		document.getElementById('difficultyAdvMapsRange').value = 9
+		// update UI
+		updateMapNumbers();
+
+        // get the cost
+        let cost = updateMapCost(true);
+        // check the cost
+        if (cost > game.resources.fragments.owned) {
+            wait_for_fragments = {
+                'enabled': true,
+                'cost': cost
+            }
+            return;
+        }
+
+		// buy the map
+		buyMap();
+		// run the map
+		runMap();
+	}
 }
 
 function getBreedTime() {
@@ -140,26 +198,6 @@ function main() {
 				ele.click();
 			}
 		}
-	}
-
-	// maps
-	if (worlds_to_map.has(curr_world)) {
-		// use set to keep track of unmapped worlds
-		worlds_to_map.delete(curr_world);
-
-		// switch to map view
-		mapsClicked();
-		// set size and difficulty sliders
-		document.getElementById('sizeAdvMapsRange').value = 9;
-		document.getElementById('difficultyAdvMapsRange').value = 9
-		// update UI
-		updateMapNumbers();
-		// buy the map
-		buyMap();
-		// run the map
-		runMap();
-
-		return;
 	}
 	
 	// robotrimp
@@ -313,3 +351,4 @@ function main() {
 }
 
 let x = setInterval(main, 10*1000);
+let y = setInterval(mapForEquipment, 5*1000);
