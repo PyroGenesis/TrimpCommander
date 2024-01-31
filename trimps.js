@@ -309,14 +309,18 @@ function main() {
 	}
 
 	// assign to geneticist (if breed timer < 1.1)
-	while (getBreedTime() < 1.1) {
 		let geneticist = document.querySelector('div#Geneticist.thingColorCanAfford');
-		if (geneticist != null) {
+	if (geneticist != null && !game.global.firing) {
+		while (getBreedTime() < 1.1) {
 			console.log((new Date()).toLocaleTimeString() + ' Assigning: ' + geneticist.id);
 			geneticist.click();
-		} else {
-			break;
 		}
+		fire_button.click();
+		while (getBreedTime() > 1.3 && game.jobs.Geneticist.owned > 0) {
+			console.log((new Date()).toLocaleTimeString() + ' Firing: ' + geneticist.id);
+			geneticist.click();
+		}
+		fire_button.click();
 	}
 	// if (something_built) return;
 

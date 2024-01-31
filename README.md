@@ -7,7 +7,7 @@ A collection of scripts to automate some tedious parts of playing Trimps. The id
 Below is the list of files and what automation it performs. You can mix and match files based on what you want to automate.
 
 ### `trimps.js`
-The general automation file. It performs the following operations (in order) every 10 seconds:
+The general automation file. It performs the following operations:
 - (Optional) Hides the game in your browser 🤫
 - Buys any available upgrades
 - Prestiges weapons
@@ -16,7 +16,7 @@ The general automation file. It performs the following operations (in order) eve
 - Assigns workers, trainers and explorers
 - Buys housing and other buildings
 - Buys storage (if needed)
-- Assigns Geneticists
+- Assigns / fires Geneticists
 - Buys Gigastations
 
 ### `trimps_equalize.js`
