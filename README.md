@@ -8,6 +8,7 @@ Below is the list of files and what automation it performs. You can mix and matc
 
 ### `trimps.js`
 The general automation file. It performs the following operations (in order) every 10 seconds:
+- (Optional) Hides the game in your browser 🤫
 - Buys any available upgrades
 - Prestiges weapons
 - Runs a small and easy map (for worlds ending in 5)

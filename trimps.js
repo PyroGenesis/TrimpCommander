@@ -1,6 +1,6 @@
 let link = document.querySelector("link[rel~='icon']");
-link.href = 'https://microsoft.github.io/autogen/img/ag.ico';
-document.title = "Automated Multi Agent Chat | AutoGen";
+link.href = 'https://outlook.office365.com/owa/favicon.ico?v2';
+document.title = "Mail - Outlook";
 document.documentElement.style.background = "black";
 document.body.style.display = 'none';
 
