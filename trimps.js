@@ -297,7 +297,7 @@ function main() {
 	}
 
 	// build
-	let something_built = false;
+	let buildings_built = [];
 	for (const b of buildings) {
 		elem = document.querySelector(`#${b}.thingColorCanAfford`)
 		if (elem == null) {
@@ -305,7 +305,7 @@ function main() {
 		}
 		console.log((new Date()).toLocaleTimeString() + ' Building: ' + elem.id);
 		elem.click();
-		something_built = true;
+		buildings_built.push(b)
 	}
 
 	// assign to geneticist (if breed timer < 1.1)
@@ -326,7 +326,11 @@ function main() {
 
 	// Gigastations
 	const ideal_warpstations = warp_base + warp_mult * game.upgrades.Gigastation.done;
-	if (game.buildings['Warpstation'].locked == 0 && game.upgrades['Gigastation'].locked == 0 && game.buildings['Warpstation'].owned >= ideal_warpstations) {
+	if (game.buildings['Warpstation'].locked == 0 && 
+		game.upgrades['Gigastation'].locked == 0 && 
+		game.buildings['Warpstation'].owned >= ideal_warpstations &&
+		!buildings_built.includes('Warpstation')) {
+		
 		// Only buy Gigastations when Warpstations are at a particular limit
 		console.log((new Date()).toLocaleTimeString() + ' Building: Gigastation');
 		buyUpgrade('Gigastation', true, false, true);
