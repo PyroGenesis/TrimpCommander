@@ -1,6 +1,6 @@
 let pause_at_40 = true;
 
-let y = setInterval(() => {
+let balance_task = setInterval(() => {
 
     // run map to lower balance stacks
     if (!game.global.preMapsActive && !game.global.mapsActive && game.challenges.Balance.balanceStacks >= 90) {
