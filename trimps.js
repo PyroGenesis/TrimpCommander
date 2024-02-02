@@ -34,7 +34,7 @@ function setTrimpAmt(amt) {
 	game.global.buyAmt = amt;
 }
 
-function mapForEquipment() {
+function mapAtZoneBasic() {
 	// if game is paused, don't do anything
 	if (game.options.menu.pauseGame.enabled) {
 		return;
@@ -359,4 +359,6 @@ function main() {
 }
 
 let x = setInterval(main, 10*1000);
-let y = setInterval(mapForEquipment, 5*1000);
+if (!game.global.canMapAtZone) {
+	let y = setInterval(mapAtZoneBasic, 5*1000);
+}
