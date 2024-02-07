@@ -173,8 +173,8 @@ function main() {
 	
 	// upgrades
 	let areUpgradesPending = document.querySelectorAll('div.upgradeThing').length > 0;
-	// only do upgrades if auto-upgrade is not on
-	if (!game.global.autoUpgradesAvailable || !game.global.autoUpgrades) {
+	// only do upgrades if auto-upgrade is not available
+	if (!game.global.autoUpgradesAvailable) {
 		let upgrade = document.querySelector('div.upgradeThing.thingColorCanAfford');
 		// only do upgrades if it's not the Scientist challenge and also if one is available
 		if (game.global.challengeActive != 'Scientist' && upgrade != null) {
