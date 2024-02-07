@@ -316,7 +316,12 @@ function main() {
 	if (geneticist != null && !game.global.firing) {
 		while (getBreedTime() < 1.1) {
 			console.log((new Date()).toLocaleTimeString() + ' Assigning: ' + geneticist.id);
+			const owned_before_assigning = game.jobs.Geneticist.owned;
 			geneticist.click();
+			// if the number of geneticists does not change after trying to buy one, quit the infinite loop
+			if (game.jobs.Geneticist.owned === owned_before_assigning) {
+				break;
+			}
 		}
 		fire_button.click();
 		while (getBreedTime() > 1.3 && game.jobs.Geneticist.owned > 0) {
