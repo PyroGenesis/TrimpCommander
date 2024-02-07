@@ -271,11 +271,14 @@ function main() {
 	for (const house_type of house_types) {
 		housing[house_type] = game.buildings[house_type].locked == 0
 
-		if (house_type === 'Collector') {
+		if (house_type === 'Gateway') {
+			// Gateway boundary explicitly set to 75 instead of 100
+			housing[house_type] = housing[house_type] && game.buildings[house_type].purchased < 75;
+		} else if (house_type === 'Collector') {
 			// Collector boundary explicitly set to 50 instead of 100
 			housing[house_type] = housing[house_type] && game.buildings[house_type].purchased < 50;
 		} else if (house_type === 'Warpstation') {
-			// pass
+			// pass - No limit for Warpstations
 		} else {
 			housing[house_type] = housing[house_type] && game.buildings[house_type].purchased < 100;
 		}
@@ -309,7 +312,7 @@ function main() {
 	}
 
 	// assign to geneticist (if breed timer < 1.1)
-		let geneticist = document.querySelector('div#Geneticist.thingColorCanAfford');
+	let geneticist = document.querySelector('div#Geneticist.thingColorCanAfford');
 	if (geneticist != null && !game.global.firing) {
 		while (getBreedTime() < 1.1) {
 			console.log((new Date()).toLocaleTimeString() + ' Assigning: ' + geneticist.id);
