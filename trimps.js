@@ -29,6 +29,8 @@ let fire_button = document.getElementById('fireBtn');
 let warp_base = 25;
 let warp_mult = 3;
 
+let ideal_breed_timer = 1;
+
 function setTrimpAmt(amt) {
 	numTab(5);
 	game.global.buyAmt = amt;
@@ -206,7 +208,7 @@ function main() {
 		magnetoShriek();
 	}
 	
-	// jobs
+	// jobs (except Geneticists)
 	if (!game.global.firing && !game.global.autoJobsSetting.enabled) {
 		// only try modifying jobs if firing mode is not ON
 		// also, stop assigning jobs when autojobs is discovered
@@ -313,8 +315,10 @@ function main() {
 
 	// assign to geneticist (if breed timer < 1.1)
 	let geneticist = document.querySelector('div#Geneticist.thingColorCanAfford');
+	const breed_lower = ideal_breed_timer + 0.1;
+	const breed_upper = ideal_breed_timer + 0.3;
 	if (geneticist != null && !game.global.firing) {
-		while (getBreedTime() < 1.1) {
+		while (getBreedTime() < breed_lower) {
 			console.log((new Date()).toLocaleTimeString() + ' Assigning: ' + geneticist.id);
 			const owned_before_assigning = game.jobs.Geneticist.owned;
 			geneticist.click();
@@ -324,7 +328,7 @@ function main() {
 			}
 		}
 		fire_button.click();
-		while (getBreedTime() > 1.3 && game.jobs.Geneticist.owned > 0) {
+		while (getBreedTime() > breed_upper && game.jobs.Geneticist.owned > 0) {
 			console.log((new Date()).toLocaleTimeString() + ' Firing: ' + geneticist.id);
 			geneticist.click();
 		}
