@@ -314,7 +314,9 @@ function main() {
 		buildings_built.push(b)
 	}
 
+	// geneticist management (if Geneticistassist is not unlocked)
 	// assign to geneticist (if breed timer < 1.1)
+	if (!game.global.Geneticistassist) {
 	let geneticist = document.querySelector('div#Geneticist.thingColorCanAfford');
 	const breed_lower = ideal_breed_timer + 0.1;
 	const breed_upper = ideal_breed_timer + 0.3;
@@ -334,6 +336,7 @@ function main() {
 			geneticist.click();
 		}
 		fire_button.click();
+		}
 	}
 	// if (something_built) return;
 
