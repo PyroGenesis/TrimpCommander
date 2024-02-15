@@ -8,16 +8,16 @@ Below is the list of files and what automation it performs. You can mix and matc
 
 ### `trimps.js`
 The general automation file. It performs the following operations:
-- (Optional) Hides the game in your browser 🤫
+- (Optional) Blacks out the game in your browser 🤫
 - Buys any available upgrades
 - Prestiges weapons
-- Runs a small and easy map (for worlds ending in 5)
 - Activate MagnetoShriek (for worlds ending in 5)
 - Assigns workers, trainers and explorers
 - Buys housing and other buildings
 - Buys storage (if needed)
-- Assigns / fires Geneticists
+- Assigns / fires Geneticists to approach the ideal breed time
 - Buys Gigastations
+- Runs a small and easy map (for worlds ending in 5)
 
 ### `trimps_equalize.js`
 Utility methods to change number of workers
