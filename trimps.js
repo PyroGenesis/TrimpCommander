@@ -186,7 +186,8 @@ function main() {
 	}
 
 	// prestiges
-	if (game.global.autoPrestiges === 0) {
+	// if sLevel >= 4, autoprestige is available
+	if (game.global.sLevel < 4) {
 		let prestiges = []
 		if (!game.equipment.Shield.blockNow || game.equipment.Shield.prestige < 9) {
 			// Only do shield if non-blocking or low level
