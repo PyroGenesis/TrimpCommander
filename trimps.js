@@ -309,8 +309,8 @@ function main() {
 		if (elem == null) {
 			continue;
 		}
-		console.log((new Date()).toLocaleTimeString() + ' Building: ' + elem.id);
-		elem.click();
+		console.log((new Date()).toLocaleTimeString() + ' Building: ' + b);
+		buyBuilding(b, true, true)
 		buildings_built.push(b)
 	}
 
