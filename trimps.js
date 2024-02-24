@@ -210,7 +210,7 @@ function main() {
 	}
 	
 	// jobs (except Geneticists)
-	if (!game.global.firing && !game.global.autoJobsSetting.enabled) {
+	if (!game.global.firing && !bwRewardUnlocked("AutoJobs")) {
 		// only try modifying jobs if firing mode is not ON
 		// also, stop assigning jobs when autojobs is discovered
 		if (max_workers_mode) {
