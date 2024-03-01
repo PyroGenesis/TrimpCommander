@@ -9,6 +9,7 @@ Below is the list of files and what automation it performs. You can mix and matc
 ### `trimps.js`
 The general automation file. It performs the following operations:
 - (Optional) Blacks out the game in your browser 🤫
+- Auto bone shrine (if full)
 - Buys any available upgrades
 - Prestiges weapons
 - Activate MagnetoShriek (for worlds ending in 5)

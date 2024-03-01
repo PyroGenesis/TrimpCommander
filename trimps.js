@@ -173,6 +173,11 @@ function main() {
 		return;
 	}
 	
+	// bone shrine
+	if (game.permaBoneBonuses.boosts.owned > 0 && game.permaBoneBonuses.boosts.charges === 10) {
+		game.permaBoneBonuses.boosts.consume();
+	}
+
 	// upgrades
 	let areUpgradesPending = document.querySelectorAll('div.upgradeThing').length > 0;
 	// only do upgrades if auto-upgrade is not available
