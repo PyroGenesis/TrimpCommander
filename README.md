@@ -24,6 +24,7 @@ The general automation file. It performs the following operations:
 
 ### `trimps_equalize.js`
 Utility methods to change number of workers
+- `fireAll()` simply fires all Farmers, Lumberjacks, Miners and Scientists (useful for AutoJobs ratio change)
 - `equalize()` assigns an equal number of trimps as Farmers, Lumberjacks and Miners from unemployed trimps
 - `fireAndEqualize()` assigns an equal number of trimps as Farmers, Lumberjacks and Miners from total trimps, firing any existing workers first
 

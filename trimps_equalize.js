@@ -4,6 +4,30 @@ function setTrimpAmt(amt) {
 	game.global.buyAmt = amt;
 }
 
+function fireAll() {
+    let max_button = document.getElementById('tab6Text');
+    let fire_button = document.getElementById('fireBtn');
+
+    let jobs = ['Farmer', 'Lumberjack', 'Miner', 'Scientist'];
+    let job_btns = [];
+    for (const job of jobs) {
+        const job_btn = document.getElementById(job);
+        if (job_btn !== null) {
+            job_btns.push(job_btn);
+        }
+    }
+
+    if (fire_button != null && !game.global.firing) {
+        fire_button.click();
+    }
+
+    max_button.click();
+    for (const job_btn of job_btns) {
+        job_btn.click();
+    }
+    fire_button.click();
+}
+
 function equalize() {
     let jobs = ['Farmer', 'Lumberjack', 'Miner'];
     let job_btns = [];
@@ -25,28 +49,6 @@ function equalize() {
 }
 
 function fireAndEqualize() {
-    let max_button = document.getElementById('tab6Text');
-    let fire_button = document.getElementById('fireBtn');
-    
-    let jobs = ['Farmer', 'Lumberjack', 'Miner'];
-    let job_btns = [];
-    for (const job of jobs) {
-        const job_btn = document.getElementById(job);
-        if (job_btn !== null) {
-            job_btns.push(job_btn);
-        }
-    }
-    if (fire_button != null && max_button != null) {
-        max_button.click();
-        fire_button.click();
-    
-        for (const job_btn of job_btns) {
-            job_btn.click();
-        }
-        fire_button.click();
-    
-        equalize();
-    }
+    fireAll();
+    equalize();
 }
-
-
