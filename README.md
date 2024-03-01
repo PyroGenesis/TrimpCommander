@@ -11,15 +11,16 @@ The general automation file. It performs the following operations:
 - (Optional) Blacks out the game in your browser 🤫
 - (Optional) Redirects the page to a different URL when the browser tab gains focus 😛
 - Auto bone shrine (if full)
+- Simple formation switching
 - Buys any available upgrades
 - Prestiges weapons
-- Activate MagnetoShriek (for worlds ending in 5)
+- Activate MagnetoShriek (for every 5th world)
 - Assigns workers, trainers and explorers
 - Buys housing and other buildings
 - Buys storage (if needed)
 - Assigns / fires Geneticists to approach the ideal breed time
 - Buys Gigastations
-- Runs a small and easy map (for worlds ending in 5)
+- Automatically runs maps to unlock prestiges
 
 ### `trimps_equalize.js`
 Utility methods to change number of workers

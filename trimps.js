@@ -19,6 +19,9 @@ let wait_for_fragments = {
     'cost': 0
 }
 
+let last_dom_status = 0;
+// let last_formation = 1;
+
 let redirect_on_focus = false;
 window.addEventListener("focus", () => {
 	if (redirect_on_focus) {
@@ -187,6 +190,20 @@ function main() {
 		game.permaBoneBonuses.boosts.consume();
 	}
 
+	// formations
+	if (last_dom_status == 0 && game.upgrades.Dominance.done == 1) {
+		setFormation('2');
+		// last_formation = 2;
+		last_dom_status = 1;
+	}
+	if (curr_world >= 180) {
+		if (countRemainingEssenceDrops() > 0 && !game.global.mapsActive) {
+			setFormation('4');
+		} else {
+			setFormation('2');
+		}
+	}
+	
 	// upgrades
 	let areUpgradesPending = document.querySelectorAll('div.upgradeThing').length > 0;
 	// only do upgrades if auto-upgrade is not available
