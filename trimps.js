@@ -19,6 +19,15 @@ let wait_for_fragments = {
     'cost': 0
 }
 
+let redirect_on_focus = false;
+window.addEventListener("focus", () => {
+	if (redirect_on_focus) {
+		save(false, true);
+		this.document.location = "https://outlook.office365.com/mail/";
+		console.log(new Date(performance.timing.connectStart));
+	}
+});
+
 let max_workers_mode = false;
 let max_workers_jobs = ["Farmer", "Lumberjack", "Miner"];
 
