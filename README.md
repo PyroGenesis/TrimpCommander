@@ -29,7 +29,14 @@ Utility methods to change number of workers
 
 ### `trimps_equipment.js`
 Utility methods to buy equipment. Useful for runs where you can't prestige equipment, like Scientist.
-- `buyBestEquipment()` tries to buy the best equipment available 50 times.
+- `buyBestEquipment()` tries to buy the best equipment available up to 50 times.
+
+### `trimps_ratio.js`
+Helps you figure out base and multiplier values for Warpstations / Gigastations.
+- It uses the current number of Warpstations and Gigastations you have
+- Then it gives you all possible INTEGER combinations of base and multiplier which would result in the current number of Warpstations and Gigastations
+- You can then choose one the combinations and use that to update `warp_base` and `warp_mult` in `trimps.js`
+- Useful to run at the end of a run, before portalling
 
 ### `trimps_balance.js`
 Useful for Balance runs
