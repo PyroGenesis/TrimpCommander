@@ -310,8 +310,8 @@ function main() {
 		housing[house_type] = game.buildings[house_type].locked == 0
 
 		if (house_type === 'Gateway') {
-			// Gateway boundary explicitly set to 60 instead of 100
-			housing[house_type] = housing[house_type] && game.buildings[house_type].purchased < 60;
+			// Gateway boundary explicitly set to 40 instead of 100
+			housing[house_type] = housing[house_type] && game.buildings[house_type].purchased < 40;
 		} else if (house_type === 'Collector') {
 			// Collector boundary explicitly set to 50 instead of 100
 			housing[house_type] = housing[house_type] && game.buildings[house_type].purchased < 50;
