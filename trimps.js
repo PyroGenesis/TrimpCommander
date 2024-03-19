@@ -196,8 +196,12 @@ function main() {
 		// last_formation = 2;
 		last_dom_status = 1;
 	}
-	if (curr_world >= 180) {
-		if (countRemainingEssenceDrops() > 0 && !game.global.mapsActive) {
+	let essence_world = 181;
+	// if (game.talents.headstart.purchased) corruption_world -= 5;
+	if (curr_world >= essence_world) {
+		if (game.global.mapsActive || game.global.spireActive) {
+			// do nothing
+		} else if (countRemainingEssenceDrops() > 0 && (game.talents.scry.purchased || game.global.gridArray[game.global.lastClearedCell+1].mutation !== "Corruption")) {
 			setFormation('4');
 		} else {
 			setFormation('2');
