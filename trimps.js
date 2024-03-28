@@ -197,7 +197,7 @@ function main() {
 		last_dom_status = 1;
 	}
 	let essence_world = 181;
-	// if (game.talents.headstart.purchased) corruption_world -= 5;
+	if (game.global.challengeActive !== '') essence_world += 10	// not worth farming in a challenge
 	if (curr_world >= essence_world) {
 		if (game.global.mapsActive || game.global.spireActive) {
 			// do nothing
