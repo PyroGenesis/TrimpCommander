@@ -39,6 +39,9 @@ Helps you figure out base and multiplier values for Warpstations / Gigastations.
 - You can then choose one the combinations and use that to update `warp_base` and `warp_mult` in `trimps.js`
 - Useful to run at the end of a run, before portalling
 
+### `trimps_player.js`
+Switches the player between research and mining for max miner efficiency while keeping the number of researchers needed low.
+
 ### `trimps_balance.js`
 Useful for Balance runs
 - Runs the first map whenever unbalance >= 90
