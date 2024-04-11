@@ -201,7 +201,13 @@ function main() {
 	if (curr_world >= essence_world) {
 		if (game.global.mapsActive || game.global.spireActive) {
 			// do nothing
-		} else if (countRemainingEssenceDrops() > 0 && (game.talents.scry.purchased || game.global.gridArray[game.global.lastClearedCell+1].mutation !== "Corruption")) {
+		} else if (countRemainingEssenceDrops() > 0 && 
+					(game.talents.scry.purchased || game.global.gridArray[game.global.lastClearedCell+1].mutation !== "Corruption") &&
+					game.global.lastClearedCell+2 < 100) {
+			// Scryer if:
+			// We have a dark ess drop remaining AND
+			// The cell is not corrupted OR Scryer is purchased AND
+			// The cell is not the last one (Improbability)
 			setFormation('4');
 		} else {
 			setFormation('2');
