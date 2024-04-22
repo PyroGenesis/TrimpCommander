@@ -200,17 +200,32 @@ function main() {
 	if (game.global.challengeActive !== '') essence_world += 10	// not worth farming in a challenge
 	if (curr_world >= essence_world) {
 		if (game.global.mapsActive || game.global.spireActive) {
-			// do nothing
-		} else if (countRemainingEssenceDrops() > 0 && 
-					(game.talents.scry.purchased || game.global.gridArray[game.global.lastClearedCell+1].mutation !== "Corruption") &&
-					game.global.lastClearedCell+2 < 100) {
-			// Scryer if:
-			// We have a dark ess drop remaining AND
-			// The cell is not corrupted OR Scryer is purchased AND
-			// The cell is not the last one (Improbability)
-			setFormation('4');
-		} else {
+			// do not change
+
+		} else if (game.global.spireActive && game.global.formation === 4) {
+			// if we emd up in spire as scryer, switch out of it
+			// otherwise leave formation in spire alone (so that we can maximize manually)
 			setFormation('2');
+
+		} else if (countRemainingEssenceDrops() === 0) {
+			// if we are out of dark essence drops, chose Domination
+			setFormation('2');
+		
+		} else if (game.global.gridArray[game.global.lastClearedCell+1].mutation === "Corruption" && !game.talents.scry.purchased) {
+			// if we encounter a corrupted cell and we haven't purchased scrying I, chose Domination
+			setFormation('2');
+
+		} else if (game.global.lastClearedCell+2 === 100) {
+			// if we are on the last cell (Improbability), chose Domination
+			setFormation('2');
+
+		} else if (calculateScryingReward() < game.global.essence*0.01) {
+			// if we are not earning even 1% of our current essence, chose Domination
+			setFormation('2');
+
+		} else {
+			// If none of the other conditions match, it is a valid scrying cell 
+			setFormation('4');
 		}
 	}
 	
