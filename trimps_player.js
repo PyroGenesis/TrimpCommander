@@ -5,7 +5,7 @@ function switchToScience() {
         setGather('science');
         setTimeout(() => { 
             setGather('metal'); 
-        }, 60*1000);
+        }, 30*1000);
     }
     curr_science = game.resources.science.owned;
 }
