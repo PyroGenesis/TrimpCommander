@@ -348,7 +348,9 @@ function main() {
 	for (const house_type of house_types) {
 		if (housing[house_type]) buildings.push(house_type)
 	}
-	buildings.push('Gym','Tribute','Nursery')
+	if (!bwRewardUnlocked("AutoStructure")) {
+		buildings.push('Gym','Tribute','Nursery');
+	}
 	// add the storage buildings based on need
 	if (!game.global.autoStorageAvailable || !game.global.autoStorage) {		
 		for (const res in res_to_store) {
