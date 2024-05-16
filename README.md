@@ -8,8 +8,6 @@ Below is the list of files and what automation it performs. You can mix and matc
 
 ### `trimps.js`
 The general automation file. It performs the following operations:
-- (Optional) Blacks out the game in your browser 🤫
-- (Optional) Redirects the page to a different URL when the browser tab gains focus 😛
 - Auto bone shrine (if full)
 - Simple formation switching
 - Buys any available upgrades

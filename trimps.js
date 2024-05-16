@@ -1,9 +1,3 @@
-let link = document.querySelector("link[rel~='icon']");
-link.href = 'https://outlook.office365.com/owa/favicon.ico?v2';
-document.title = "Mail - Outlook";
-document.documentElement.style.background = "black";
-document.body.style.display = 'none';
-
 let res_to_store = {
 	'food': '#Barn',
 	'wood': '#Shed',
@@ -21,15 +15,6 @@ let wait_for_fragments = {
 
 let last_dom_status = 0;
 // let last_formation = 1;
-
-let redirect_on_focus = false;
-window.addEventListener("focus", () => {
-	if (redirect_on_focus) {
-		save(false, true);
-		this.document.location = "https://outlook.office365.com/mail/";
-		console.log(new Date(performance.timing.connectStart));
-	}
-});
 
 let max_workers_mode = false;
 let max_workers_jobs = ["Farmer", "Lumberjack", "Miner"];
@@ -184,7 +169,7 @@ function main() {
 		}
 		return;
 	}
-	
+
 	// bone shrine
 	if (game.permaBoneBonuses.boosts.owned > 0 && game.permaBoneBonuses.boosts.charges === 10) {
 		game.permaBoneBonuses.boosts.consume();
@@ -375,25 +360,25 @@ function main() {
 	// geneticist management (if Geneticistassist is not unlocked)
 	// assign to geneticist (if breed timer < 1.1)
 	if (!game.global.Geneticistassist) {
-	let geneticist = document.querySelector('div#Geneticist.thingColorCanAfford');
-	const breed_lower = ideal_breed_timer + 0.1;
-	const breed_upper = ideal_breed_timer + 0.3;
-	if (geneticist != null && !game.global.firing) {
-		while (getBreedTime() < breed_lower) {
-			console.log((new Date()).toLocaleTimeString() + ' Assigning: ' + geneticist.id);
-			const owned_before_assigning = game.jobs.Geneticist.owned;
-			geneticist.click();
-			// if the number of geneticists does not change after trying to buy one, quit the infinite loop
-			if (game.jobs.Geneticist.owned === owned_before_assigning) {
-				break;
+		let geneticist = document.querySelector('div#Geneticist.thingColorCanAfford');
+		const breed_lower = ideal_breed_timer + 0.1;
+		const breed_upper = ideal_breed_timer + 0.3;
+		if (geneticist != null && !game.global.firing) {
+			while (getBreedTime() < breed_lower) {
+				console.log((new Date()).toLocaleTimeString() + ' Assigning: ' + geneticist.id);
+				const owned_before_assigning = game.jobs.Geneticist.owned;
+				geneticist.click();
+				// if the number of geneticists does not change after trying to buy one, quit the infinite loop
+				if (game.jobs.Geneticist.owned === owned_before_assigning) {
+					break;
+				}
 			}
-		}
-		fire_button.click();
-		while (getBreedTime() > breed_upper && game.jobs.Geneticist.owned > 0) {
-			console.log((new Date()).toLocaleTimeString() + ' Firing: ' + geneticist.id);
-			geneticist.click();
-		}
-		fire_button.click();
+			fire_button.click();
+			while (getBreedTime() > breed_upper && game.jobs.Geneticist.owned > 0) {
+				console.log((new Date()).toLocaleTimeString() + ' Firing: ' + geneticist.id);
+				geneticist.click();
+			}
+			fire_button.click();
 		}
 	}
 	// if (something_built) return;
