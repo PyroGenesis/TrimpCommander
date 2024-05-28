@@ -182,15 +182,37 @@ function main() {
 		last_dom_status = 1;
 	}
 	let essence_world = 181;
-	if (game.global.challengeActive !== '') essence_world += 10	// not worth farming in a challenge
 	if (curr_world >= essence_world) {
-		if (game.global.mapsActive || game.global.spireActive) {
+		let norm_health = game.global.soldierHealthMax
+		switch (game.global.formation) {
+			case 1:
+				norm_health /= 4;
+				break;
+			case 2:
+				norm_health *= 2;
+				break;
+			case 3:
+				norm_health *= 2;
+				break;
+			case 4:
+				norm_health *= 2;
+				break;
+		}
+
+		if (game.global.spireActive && game.global.formation === 4) {
+			// if we emd up in spire as scryer, switch out of it
+			setFormation('2');
+			
+		} else if (game.global.spireActive) {
+			// otherwise leave formation in spire alone (so that we can maximize manually)
 			// do not change
 
-		} else if (game.global.spireActive && game.global.formation === 4) {
-			// if we emd up in spire as scryer, switch out of it
-			// otherwise leave formation in spire alone (so that we can maximize manually)
-			setFormation('2');
+		} else if (game.global.gridArray[game.global.lastClearedCell+1].attack > norm_health*0.5) {
+			// if enemy has more attack than (half) our health, switch to Heap formation
+			setFormation('1');
+
+		} else if (game.global.mapsActive || game.global.runningChallengeSquared) {
+			// do not change
 
 		} else if (countRemainingEssenceDrops() === 0) {
 			// if we are out of dark essence drops, chose Domination
