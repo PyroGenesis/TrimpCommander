@@ -204,8 +204,8 @@ function main() {
 			// if we are on the last cell (Improbability), chose Domination
 			setFormation('2');
 
-		} else if (calculateScryingReward() < game.global.essence*0.01) {
-			// if we are not earning even 1% of our current essence, chose Domination
+		} else if (calculateScryingReward() < game.global.spentEssence*2*0.01) {
+			// if we are not earning even 1% of required essence for next upgrade, chose Domination
 			setFormation('2');
 
 		} else {
