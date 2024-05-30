@@ -187,51 +187,77 @@ function main() {
 		switch (game.global.formation) {
 			case 1:
 				norm_health /= 4;
+				// block *= 2;
 				break;
 			case 2:
 				norm_health *= 2;
+				// block *= 2;
 				break;
 			case 3:
 				norm_health *= 2;
+				// block /= 4;
 				break;
 			case 4:
 				norm_health *= 2;
+				// block *= 2;
 				break;
 		}
+		let curr_gridcell = null;
+		if (game.global.mapsActive) {
+			curr_gridcell = game.global.mapGridArray[game.global.lastClearedMapCell+1]
+		} else {
+			curr_gridcell = game.global.gridArray[game.global.lastClearedCell+1]
+		}
+		const enemy_attack = curr_gridcell.attack;
+		const dmg = Math.max(enemy_attack - game.global.soldierCurrentBlock, 0) + enemy_attack*0.2
 
 		if (game.global.spireActive && game.global.formation === 4) {
 			// if we emd up in spire as scryer, switch out of it
+			if (game.global.formation !== 2)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
 			setFormation('2');
 			
 		} else if (game.global.spireActive) {
 			// otherwise leave formation in spire alone (so that we can maximize manually)
 			// do not change
 
-		} else if (game.global.gridArray[game.global.lastClearedCell+1].attack > norm_health*0.5) {
+		} else if (dmg > norm_health*0.5) {
 			// if enemy has more attack than (half) our health, switch to Heap formation
+			if (game.global.formation !== 1)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Heap');
 			setFormation('1');
 
 		} else if (game.global.mapsActive || game.global.runningChallengeSquared) {
 			// do not change
 
 		} else if (countRemainingEssenceDrops() === 0) {
-			// if we are out of dark essence drops, chose Domination
+			// if we are out of dark essence drops, chose Domninance
+			if (game.global.formation !== 2)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
 			setFormation('2');
 		
-		} else if (game.global.gridArray[game.global.lastClearedCell+1].mutation === "Corruption" && !game.talents.scry.purchased) {
-			// if we encounter a corrupted cell and we haven't purchased scrying I, chose Domination
+		} else if (curr_gridcell.mutation === "Corruption" && !game.talents.scry.purchased) {
+			// if we encounter a corrupted cell and we haven't purchased scrying I, chose Domninance
+			if (game.global.formation !== 2)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
 			setFormation('2');
 
 		} else if (game.global.lastClearedCell+2 === 100) {
-			// if we are on the last cell (Improbability), chose Domination
+			// if we are on the last cell (Improbability), chose Domninance
+			if (game.global.formation !== 2)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
 			setFormation('2');
 
 		} else if (calculateScryingReward() < game.global.spentEssence*2*0.01) {
-			// if we are not earning even 1% of required essence for next upgrade, chose Domination
+			// if we are not earning even 1% of required essence for next upgrade, chose Domninance
+			if (game.global.formation !== 2)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
 			setFormation('2');
 
 		} else {
 			// If none of the other conditions match, it is a valid scrying cell 
+			if (game.global.formation !== 4)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Scryer');
 			setFormation('4');
 		}
 	}
