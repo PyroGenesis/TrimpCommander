@@ -208,7 +208,8 @@ function main() {
 		} else {
 			curr_gridcell = game.global.gridArray[game.global.lastClearedCell+1]
 		}
-		const enemy_attack = curr_gridcell.attack;
+
+		const enemy_attack = calculateDamage(curr_gridcell.attack, false, false, false, curr_gridcell);
 		const dmg = Math.max(enemy_attack - game.global.soldierCurrentBlock, 0) + enemy_attack*0.2
 
 		if (game.global.spireActive && game.global.formation === 4) {
