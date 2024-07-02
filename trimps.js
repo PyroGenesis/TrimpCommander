@@ -215,7 +215,7 @@ function main() {
 		if (game.global.spireActive && game.global.formation === 4) {
 			// if we emd up in spire as scryer, switch out of it
 			if (game.global.formation !== 2)
-				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
 			setFormation('2');
 			
 		} else if (game.global.spireActive) {
@@ -232,27 +232,27 @@ function main() {
 			// do not change
 
 		} else if (countRemainingEssenceDrops() === 0) {
-			// if we are out of dark essence drops, chose Domninance
+			// if we are out of dark essence drops, chose Dominance
 			if (game.global.formation !== 2)
-				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
 			setFormation('2');
 		
 		} else if (curr_gridcell.mutation === "Corruption" && !game.talents.scry.purchased) {
-			// if we encounter a corrupted cell and we haven't purchased scrying I, chose Domninance
+			// if we encounter a corrupted cell and we haven't purchased scrying I, chose Dominance
 			if (game.global.formation !== 2)
-				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
 			setFormation('2');
 
 		} else if (game.global.lastClearedCell+2 === 100) {
-			// if we are on the last cell (Improbability), chose Domninance
+			// if we are on the last cell (Improbability), chose Dominance
 			if (game.global.formation !== 2)
-				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
 			setFormation('2');
 
 		} else if (calculateScryingReward() < game.global.spentEssence*2*0.01) {
-			// if we are not earning even 1% of required essence for next upgrade, chose Domninance
+			// if we are not earning even 1% of required essence for next upgrade, chose Dominance
 			if (game.global.formation !== 2)
-				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Domninance');
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
 			setFormation('2');
 
 		} else {
