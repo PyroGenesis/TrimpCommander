@@ -210,7 +210,7 @@ function main() {
 		}
 
 		const enemy_attack = calculateDamage(curr_gridcell.attack, false, false, false, curr_gridcell);
-		const dmg = Math.max(enemy_attack - game.global.soldierCurrentBlock, 0) + enemy_attack*0.2
+		const dmg = Math.max(enemy_attack - game.global.soldierCurrentBlock, 0) + enemy_attack * getPierceAmt();
 
 		if (game.global.spireActive && game.global.formation === 4) {
 			// if we emd up in spire as scryer, switch out of it
