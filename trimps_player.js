@@ -10,4 +10,4 @@ function switchToScience() {
     curr_science = game.resources.science.owned;
 }
 
-let z = setInterval(switchToScience, 10*1000);
+let interval_player = setInterval(switchToScience, 10*1000);

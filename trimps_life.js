@@ -4,7 +4,7 @@ let curr_world = game.global.world;
 let curr_cell = game.global.lastClearedCell;
 let worlds_to_stop = [100];
 
-let life_task = setInterval(() => {
+let interval_life = setInterval(() => {
 	// if game is paused, don't do anything
 	if (game.options.menu.pauseGame.enabled) {
 		return;

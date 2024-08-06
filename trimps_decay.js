@@ -5,7 +5,7 @@ let curr_cell = game.global.lastClearedCell;
 let worlds_to_stop = [16,21,26,31,36,41,45,50,55];
 let cell_attempt = 0;
 
-let decay_task = setInterval(() => {
+let interval_decay = setInterval(() => {
 	// if game is paused, don't do anything
 	if (game.options.menu.pauseGame.enabled) {
 		return;

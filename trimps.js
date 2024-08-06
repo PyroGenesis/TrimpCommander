@@ -466,7 +466,7 @@ function main() {
 		
 }
 
-let x = setInterval(main, 10*1000);
+let interval_main = setInterval(main, 10*1000);
 if (!game.global.canMapAtZone) {
-	let y = setInterval(mapAtZoneBasic, 5*1000);
+	let interval_map = setInterval(mapAtZoneBasic, 5*1000);
 }
