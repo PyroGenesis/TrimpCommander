@@ -211,6 +211,9 @@ function main() {
 
 		const enemy_attack = calculateDamage(curr_gridcell.attack, false, false, false, curr_gridcell);
 		const dmg = Math.max(enemy_attack - game.global.soldierCurrentBlock, 0) + enemy_attack * getPierceAmt();
+		const de_formation = game.global.uberNature === 'Wind' ? 5 : 4
+		const de_formation_name = game.global.uberNature === 'Wind' ? 'Wind' : 'Scryer'
+		const voidMAZ = game.options.menu.mapAtZone.setZone.find((m) => m.on && m.preset === 4)
 
 		if (game.global.spireActive && !game.global.mapsActive && (game.global.formation === 4 || game.global.formation === 5)) {
 			// if we emd up in spire as Scryer / Wind (not in a map), switch out of it
@@ -230,6 +233,12 @@ function main() {
 
 		} else if (game.global.mapsActive || game.global.runningChallengeSquared) {
 			// do not change
+
+		} else if (game.talents.scry2.purchased && voidMAZ?.world === game.global.world) {
+			// if Scryer II was purchased, switch to Scryer / Wind formation if current world is Void Map world (check using map at zone settings)
+			if (game.global.formation !== de_formation)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: ' + de_formation_name);
+			setFormation(de_formation.toString());
 
 		} else if (countRemainingEssenceDrops() === 0) {
 			// if we are out of dark essence drops, chose Dominance
@@ -256,10 +265,10 @@ function main() {
 			setFormation('2');
 
 		} else {
-			// If none of the other conditions match, it is a valid scrying cell 
-			if (game.global.formation !== 4)
-				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Scryer');
-			setFormation('4');
+			// If none of the other conditions match, it is a valid Scryer / Wind cell 
+			if (game.global.formation !== de_formation)
+				console.log((new Date()).toLocaleTimeString() + ' Switching formation: ' + de_formation_name);
+			setFormation(de_formation.toString());
 		}
 	}
 	
