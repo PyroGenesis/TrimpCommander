@@ -212,8 +212,8 @@ function main() {
 		const enemy_attack = calculateDamage(curr_gridcell.attack, false, false, false, curr_gridcell);
 		const dmg = Math.max(enemy_attack - game.global.soldierCurrentBlock, 0) + enemy_attack * getPierceAmt();
 
-		if (game.global.spireActive && game.global.formation === 4) {
-			// if we emd up in spire as scryer, switch out of it
+		if (game.global.spireActive && !game.global.mapsActive && (game.global.formation === 4 || game.global.formation === 5)) {
+			// if we emd up in spire as Scryer / Wind (not in a map), switch out of it
 			if (game.global.formation !== 2)
 				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
 			setFormation('2');
