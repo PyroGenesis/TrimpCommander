@@ -20,6 +20,12 @@ The general automation file. It performs the following operations:
 - Buys Gigastations
 - Automatically runs maps to unlock prestiges
 
+### `trimps_player.js`
+Switches the player between research and mining for max miner efficiency while keeping the number of researchers needed low.
+
+### `trimps_magma.js`
+Automatically switches from world view to map view and back to maximize Dimensional Generator magma usage (no overclock).
+
 ### `trimps_equalize.js`
 Utility methods to change number of workers
 - `fireAll()` simply fires all Farmers, Lumberjacks, Miners and Scientists (useful for AutoJobs ratio change)
@@ -36,9 +42,6 @@ Helps you figure out base and multiplier values for Warpstations / Gigastations.
 - Then it gives you all possible INTEGER combinations of base and multiplier which would result in the current number of Warpstations and Gigastations
 - You can then choose one the combinations and use that to update `warp_base` and `warp_mult` in `trimps.js`
 - Useful to run at the end of a run, before portalling
-
-### `trimps_player.js`
-Switches the player between research and mining for max miner efficiency while keeping the number of researchers needed low.
 
 ### `trimps_balance.js`
 Useful for Balance runs
