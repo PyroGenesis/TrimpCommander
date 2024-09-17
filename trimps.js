@@ -243,11 +243,11 @@ function main() {
 				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
 			setFormation('2');
 
-		} else if (game.global.lastClearedCell+2 === 100) {
-			// if we are on the last cell (Improbability), chose Dominance
-			if (game.global.formation !== 2)
-				console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
-			setFormation('2');
+		// } else if (game.global.lastClearedCell+2 === 100) {
+		// 	// if we are on the last cell (Improbability), chose Dominance
+		// 	if (game.global.formation !== 2)
+		// 		console.log((new Date()).toLocaleTimeString() + ' Switching formation: Dominance');
+		// 	setFormation('2');
 
 		} else if (calculateScryingReward() < game.global.spentEssence*2*0.01) {
 			// if we are not earning even 1% of required essence for next upgrade, chose Dominance
